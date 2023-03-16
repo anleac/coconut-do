@@ -1,3 +1,5 @@
+import 'package:coconut_do/core/models/task_library.dart';
+import 'package:coconut_do/helpers/dialogue_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -18,5 +20,10 @@ class _HomePageFabState extends State<HomePageFab> {
 
   Future<void> _handleFabPress(BuildContext context) async {
     // Add a task
+    var taskLibrary = TaskLibrary.of(context);
+    var dialogueAdd = await DialogueHelper.addNewTask(context);
+    if (dialogueAdd != null) {
+      taskLibrary.addTask(dialogueAdd);
+    }
   }
 }

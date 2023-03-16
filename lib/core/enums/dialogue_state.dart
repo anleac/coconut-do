@@ -1,0 +1,4 @@
+enum DialogState {
+  yes,
+  cancel
+}

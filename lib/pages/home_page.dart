@@ -1,5 +1,7 @@
+import 'package:coconut_do/helpers/dialogue_helper.dart';
 import 'package:coconut_do/widgets/home_page_drawer.dart';
 import 'package:coconut_do/widgets/home_page_fab.dart';
+import 'package:coconut_do/widgets/task_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,9 +22,13 @@ class HomePageState extends State<HomePage> {
       ),
       floatingActionButton: const HomePageFab(),
       drawer: const HomePageDrawer(),
-      body: const Center(
-        child: Text('Hello World'),
-      ),
+      body: const TaskList(),
     );
+  }
+
+  @override
+  void dispose() {
+    DialogueHelper.dispose();
+    super.dispose();
   }
 }

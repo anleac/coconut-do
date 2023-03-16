@@ -15,9 +15,10 @@ class DatabaseProvider {
   static const _createTaskTable = 
     "CREATE TABLE $_taskTableName ("
       "id INTEGER PRIMARY KEY,"
-      "name TEXT,"
+      "title TEXT,"
+      "description TEXT,"
       "isCompleted BIT"
-    ")";
+    ")"; // Do we need folder ID here?
 
   static late Database _database;
   static initDatabase() async {
@@ -42,7 +43,7 @@ class DatabaseProvider {
 
   static updateTaskStatus(Task task) async {
     const updateString = "UPDATE $_taskTableName SET isCompleted = ? WHERE id = ?";
-    return await _database.rawUpdate(updateString, [task.isCompleted, task.id]);
+    return await _database.rawUpdate(updateString, [task.isCompleted ? 1 : 0, task.id]);
   }
 
   static deleteTask(int id) async {
